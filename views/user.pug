@@ -1,0 +1,38 @@
+doctype=html
+html(language=en)
+html
+head
+  title users
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css')
+  script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+body
+body
+nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-3
+  a.navbar-brand(href='/') EXPRESS APP
+  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExampleDefault', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarsExampleDefault.collapse.navbar-collapse
+    ul.navbar-nav.ml-auto.flex-row
+      li.nav-item.active
+        a.nav-link( href='/users') Users
+
+.container
+  .row
+    .col-4
+      img.card-img-top(src=`${user.avatar}`, alt='Card image cap')
+    .col-8
+      .card
+        .card-body
+          h5.card-title= user.name
+          h6.card-subtitle.mb-2.text-muted= user.username
+          hr
+          p.card-text= user.company.catchPhrase
+          p.mb-0 Company: #{user.company.name}
+          p.mb-0 Phone: #{user.phone}
+          p.mb-0 Email: #{user.email}
+          p.mb-0 City: #{user.address.city}
+          p.mb-0 Street: #{user.address.street}
+          p Zip: #{user.address.zipcode}
+          a.card-link(href='/users') Go back
