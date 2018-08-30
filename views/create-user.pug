@@ -1,0 +1,76 @@
+doctype=html
+html(language=en)
+html
+head
+  title users
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css')
+  script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+body
+body
+nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4
+  a.navbar-brand(href='/') EXPRESS APP
+  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExampleDefault', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarsExampleDefault.collapse.navbar-collapse
+    ul.navbar-nav.ml-auto.flex-row
+      li.nav-item.active
+        a.nav-link( href='/users') Users
+
+.container
+  .row
+    .col-sm-8.offset-sm-2
+      if !user
+        h2 Create New User
+        form(action='/users/add' method='post')
+          .form-group
+            label(for='name') Name
+            input#name.form-control(type='text' name='name' placeholder='Enter firstname and lastname' required)
+          .form-group
+            label(for='email') Email
+            input#email.form-control(type='email' name='email' placeholder='Enter email' required)
+            small#emailHelp.form-text.text-muted We&apos;ll never share your email with anyone else.
+          .form-group
+            label(for='phone') Phone
+            input#phone.form-control(type='text' name='phone' placeholder='Enter phone number' required)
+          .form-group
+            label(for=`catchPhrase`) Catch phrase
+            textarea#catchPhrase.form-control(name=`catchPhrase` placeholder='Enter catch phrase' required)
+          .form-group
+            label(for='company') Company
+            input#company.form-control(type='text' name='company' placeholder='Enter company name' required)
+          .form-group
+            label(for='avatar') Avatar Url
+            input#avatar.form-control(type='text' name='avatar' placeholder='Enter avatar url' required)
+          .form-check
+            input#exampleCheck1.form-check-input(type='checkbox' required)
+            label.form-check-label.mb-3(for='exampleCheck1') I agree with all conditions
+          .form-group.mb-5
+            button.btn.btn-primary.mr-1(type='submit') Submit
+            a.btn.btn-danger(href=`javascript:history.back()`) Cancel
+      else
+        h2 Edit: #{user.name}
+        form(action=`/users/update/${user._id}` method='post')
+          .form-group
+            label(for='name') Name
+            input#name.form-control(value=`${user.name}` type='text' name='name' placeholder='Enter firstname and lastname' required)
+          .form-group
+            label(for='email') Email
+            input#email.form-control(value=`${user.email}` type='email' name='email' placeholder='Enter email' required)
+            small#emailHelp.form-text.text-muted We&apos;ll never share your email with anyone else.
+          .form-group
+            label(for='phone') Phone
+            input#phone.form-control(value=`${user.phone}` type='text' name='phone' placeholder='Enter phone number' required)
+          .form-group
+            label(for=`catchPhrase`) Catch phrase
+            textarea#catchPhrase.form-control(name=`catchPhrase` placeholder='Enter catch phrase' required)= user.catchPhrase
+          .form-group
+            label(for='company') Company
+            input#company.form-control(value=`${user.company}` type='text' name='company' placeholder='Enter company name' required)
+          .form-group.mb-4
+            label(for='avatar') Avatar Url
+            input#avatar.form-control(value=`${user.avatar}` type='text' name='avatar' placeholder='Enter avatar url' required)
+          .form-group.mb-4
+            button.btn.btn-primary.mr-1(type='submit') Update
+            a.btn.btn-danger(href=`javascript:history.back()`) Cancel
